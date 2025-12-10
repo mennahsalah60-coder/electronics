@@ -19,6 +19,6 @@ This is a frontend web page (static site) named **PhoneShop** — part of a prac
 
 ## Live Demo  
 LiveDemo:  
-[PhoneShop Live Demo](https://mennahsalah60-coder.github.io/iphone/)  
+[PhoneShop Live Demo]([https://mennahsalah60-coder.github.io/iphone/](https://mennahsalah60-coder.github.io/electronics/))  
 --- 
 "# electronics" 
