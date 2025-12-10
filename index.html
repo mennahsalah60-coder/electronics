@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Boldonse&family=Glory:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <title>PhoneShop</title>
+</head>
+
+<body>
+    <section class="container">
+        <nav class="navbar bg-body-light">
+            <div class="">
+                <div>
+                    <h1 class="mt-4"><span>Our </span>Product</h1>
+                    <p class="line"></p>
+                </div>
+                <div class="inputs gap-2">
+                    <input class="search-input form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" />
+                    <button class="search-btn btn btn-outline-primary" type="submit">SearchByName</button>
+                </div>
+
+                <div class="inputs mt-3 gap-2">
+                    <div class="all-price">
+                        <input class="max-price form-control" type="number" placeholder="max">
+                        <input class="min-price form-control" type="number" placeholder="min">
+                    </div>
+                    <div>
+                        <button class="price-btn btn btn-outline-primary h-100 w-100"
+                            type="submit">SearchByPrice</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="all gap-2 products-container"></div>
+    </section>
+</body>
+<script src="./assets/script.js"></script>
+
+</html>
