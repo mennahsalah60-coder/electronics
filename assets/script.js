@@ -28,7 +28,7 @@ const products = [
         h2: "MacBook Air M3",
         h3: "13-inch Retina display lorem, M3 chip, 8GB RAM, 256GB  SSD.",
         more: "Read More",
-        image: "./assets/images/mac2.png",
+        image: "./assets/images/mac2.jpg",
         old_price: "1000$",
         price_after_sale: "900$",
         cart: "./assets/images/Group 1.svg",
