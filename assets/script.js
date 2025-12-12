@@ -97,35 +97,14 @@ const products = [
 ]
 
 const ProductsContainer = document.querySelector(".products-container")
-function allProducts(all) {
-    ProductsContainer.innerHTML = " ";
-
-    all.forEach(product => {
-        ProductsContainer.innerHTML += `<div class="card">
-            <img class="card-img-top p-2 rounded-4 h-75" src="${product.image}">
-            <div class="card-body">
-                <h2 class= "card-title">${product.h2}</h2>
-                <h3 class="card-text text-light-emphasis fs-5">${product.h3}</h3>
-                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover fs-5">${product.more}</a>
-                <p class="card-text fs-2 text-success">${product.price_after_sale}
-                    <span  class="fs-4 text-decoration-line-through text-danger">${product.old_price}</span>
-                </p>
-                <div class="button">
-                <a class="btn btn-primary pt-3">
-                <img src="${product.cart}" alt="Cart Icon" class="">
-                </a>
-                <p><img class="heart" src="${product.fav}" alt="Cart Icon" class=""></p>
-            </div>
-        </div>
-    </div>`
-    });
-}
-
 function displayProducts(allDisplay) {
     ProductsContainer.innerHTML = " ";
 
     allDisplay.forEach(product => {
-        ProductsContainer.innerHTML += `<div class="card">
+        if (products.length === 0){
+        }
+        ProductsContainer.innerHTML += 
+        `<div class="card">
             <img class="card-img-top p-2 rounded-4 h-75" src="${product.image}">
             <div class="card-body">
                 <h2 class= "card-title">${product.h2}</h2>
@@ -135,13 +114,13 @@ function displayProducts(allDisplay) {
                     <span  class="fs-4 text-decoration-line-through text-danger">${product.old_price}</span>
                 </p>
                 <div class="button">
-                <a class="btn btn-primary pt-3">
-                <img src="${product.cart}" alt="Cart Icon" class="">
-                </a>
-                <p><img class="heart" src="${product.fav}" alt="Cart Icon" class=""></p>
+                    <a class="btn btn-primary pt-3">
+                    <img src="${product.cart}" alt="Cart Icon" class="">
+                    </a>
+                    <p><img class="heart" src="${product.fav}" alt="Cart Icon" class=""></p>
+                </div>
             </div>
-        </div>
-    </div>`
+        </div>`
     });
 }
 displayProducts(products);
@@ -153,13 +132,24 @@ searchBtn.addEventListener("click", function (event) {
     // preventDefault() --> form ?
     // event.preventDefault()
     ProductsContainer.innerHTML = "";
-    const input = searchInput.value.toLowerCase()
-    const filteredNamePtoducts = products.filter((product) => {
-        return product.h2.toLowerCase().includes(input)
+        let filteredNamePtoducts = [];
+        if (products.length === 0){
+            const notFound = products.filter((product) => {
+                console.log( "Not Found Data")            
+        })
+        }else {
+            const input = searchInput.value.toLowerCase()
+            const filteredNamePtoducts = products.filter((product) => {
+            return product.h2.toLowerCase().includes(input)
+            })
+        }
 
-    })
+        if (filteredNamePtoducts.length === 0) {
+            ProductsContainer.innerHTML =
+                `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
+        return;
+    }
     displayProducts(filteredNamePtoducts);
-    // debugger
 })
 
 const priceBtn = document.querySelector(".price-btn")
@@ -170,16 +160,23 @@ priceBtn.addEventListener("click", function () {
     ProductsContainer.innerHTML = "";
     const max = Number(maxPrice.value)
     const min = Number(minPrice.value)
-
-    const filteredPrice = products.filter((product) => {
-        // replace ?
-        const price = Number(product.price_after_sale.replace("$", ""))
-        return price >= min && price <= max
-    })
+    let filteredPrice =[]
+    if (products.length === 0){
+        console.log("no data")
+    }else {
+        const filteredPrice = products.filter((product) => {
+            // replace ?
+            const price = Number(product.price_after_sale.replace("$", ""))
+            return price >= min && price <= max
+        })
+    }
+    if (filteredPrice.length === 0){
+        ProductsContainer.innerHTML =
+            `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
+        return;
+    }
     displayProducts(filteredPrice)
 })
-
-
 
 
 

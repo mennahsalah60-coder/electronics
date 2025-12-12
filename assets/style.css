@@ -6,10 +6,17 @@ section {
     }
 
     nav {
+        display: grid !important;
+        grid-template-columns: 1fr;
 
         .inputs {
             display: grid;
             grid-template-columns: 4fr 1fr;
+
+            .all-price {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
         }
     }
 
