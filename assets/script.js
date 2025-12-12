@@ -133,17 +133,12 @@ searchBtn.addEventListener("click", function (event) {
     // event.preventDefault()
     ProductsContainer.innerHTML = "";
         let filteredNamePtoducts = [];
-        if (products.length === 0){
-            const notFound = products.filter((product) => {
-                console.log( "Not Found Data")            
-        })
-        }else {
+        if (products.length !== 0){
             const input = searchInput.value.toLowerCase()
             const filteredNamePtoducts = products.filter((product) => {
             return product.h2.toLowerCase().includes(input)
             })
         }
-
         if (filteredNamePtoducts.length === 0) {
             ProductsContainer.innerHTML =
                 `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
@@ -161,9 +156,7 @@ priceBtn.addEventListener("click", function () {
     const max = Number(maxPrice.value)
     const min = Number(minPrice.value)
     let filteredPrice =[]
-    if (products.length === 0){
-        console.log("no data")
-    }else {
+    if (products.length !== 0){
         const filteredPrice = products.filter((product) => {
             // replace ?
             const price = Number(product.price_after_sale.replace("$", ""))
