@@ -28,7 +28,7 @@ const products = [
         h2: "MacBook Air M3",
         h3: "13-inch Retina display lorem, M3 chip, 8GB RAM, 256GB  SSD.",
         more: "Read More",
-        image: "./assets/images/mac1.png",
+        image: "./assets/images/mac2.png",
         old_price: "1000$",
         price_after_sale: "900$",
         cart: "./assets/images/Group 1.svg",
@@ -101,10 +101,10 @@ function displayProducts(allDisplay) {
     ProductsContainer.innerHTML = " ";
 
     allDisplay.forEach(product => {
-        if (products.length === 0){
+        if (products.length === 0) {
         }
-        ProductsContainer.innerHTML += 
-        `<div class="card">
+        ProductsContainer.innerHTML +=
+            `<div class="card">
             <img class="card-img-top p-2 rounded-4 h-75" src="${product.image}">
             <div class="card-body">
                 <h2 class= "card-title">${product.h2}</h2>
@@ -162,7 +162,7 @@ priceBtn.addEventListener("click", function () {
         const price = Number(product.price_after_sale.replace("$", ""))
         return price >= min && price <= max
     })
-    if (filteredPrice.length === 0){
+    if (filteredPrice.length === 0) {
         ProductsContainer.innerHTML =
             `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
         return;
