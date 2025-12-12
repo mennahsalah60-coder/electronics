@@ -128,24 +128,26 @@ displayProducts(products);
 const searchBtn = document.querySelector(".search-btn")
 const searchInput = document.querySelector(".search-input")
 
-searchBtn.addEventListener("click", function (event) {
+searchBtn.addEventListener("click", function () {
     // preventDefault() --> form ?
     // event.preventDefault()
     ProductsContainer.innerHTML = "";
-        let filteredNamePtoducts = [];
-        if (products.length !== 0){
-            const input = searchInput.value.toLowerCase()
-            const filteredNamePtoducts = products.filter((product) => {
-            return product.h2.toLowerCase().includes(input)
-            })
-        }
-        if (filteredNamePtoducts.length === 0) {
-            ProductsContainer.innerHTML =
-                `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
+
+    const input = searchInput.value.toLowerCase().trim();
+
+    const filteredNamePtoducts = products.filter((product) => {
+        return product.h2.toLowerCase().includes(input);
+    });
+
+    if (filteredNamePtoducts.length === 0) {
+        ProductsContainer.innerHTML =
+            `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
         return;
     }
+
     displayProducts(filteredNamePtoducts);
-})
+});
+
 
 const priceBtn = document.querySelector(".price-btn")
 const maxPrice = document.querySelector(".max-price")
@@ -155,14 +157,11 @@ priceBtn.addEventListener("click", function () {
     ProductsContainer.innerHTML = "";
     const max = Number(maxPrice.value)
     const min = Number(minPrice.value)
-    let filteredPrice =[]
-    if (products.length !== 0){
-        const filteredPrice = products.filter((product) => {
-            // replace ?
-            const price = Number(product.price_after_sale.replace("$", ""))
-            return price >= min && price <= max
-        })
-    }
+    const filteredPrice = products.filter((product) => {
+        // replace ?
+        const price = Number(product.price_after_sale.replace("$", ""))
+        return price >= min && price <= max
+    })
     if (filteredPrice.length === 0){
         ProductsContainer.innerHTML =
             `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
