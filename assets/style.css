@@ -9,6 +9,23 @@ section {
         display: grid !important;
         grid-template-columns: 1fr;
 
+        .nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            img {
+                width: 10%;
+            }
+
+            .counter {
+                width: 30px;
+                height: 40px;
+                border-radius: 50%;
+                margin-left: 88%;
+                margin-top: -30px;
+            }
+        }
+
         .inputs {
             display: grid;
             grid-template-columns: 4fr 1fr;
@@ -24,6 +41,10 @@ section {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         margin-top: 40px;
+
+        button {
+            border-radius: 0px 0px 0px 10px;
+        }
     }
 
     .button {
@@ -46,8 +67,8 @@ section {
             }
         }
     }
-
 }
+
 
 @media screen and (max-width: 1024px) {
     section {
@@ -56,13 +77,44 @@ section {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
         }
+
+        nav {
+            .nav {
+
+                img {
+                    width: 12%;
+                }
+
+                .counter {
+                    width: 23px;
+                    height: 33px;
+                    margin-left: 86%;
+                    padding-top: 4px !important;
+                }
+            }
+        }
+
     }
 }
 
 @media screen and (max-width: 768px) {
     section {
+
         .line {
             width: 80px;
+        }
+
+        nav {
+            .nav {
+
+                img {
+                    width: 15%;
+                }
+
+                .counter {
+                    margin-left: 82% !important;
+                }
+            }
         }
 
         .all {
@@ -74,13 +126,58 @@ section {
 
 @media screen and (max-width: 450px) {
     section {
+
         .line {
             width: 70px;
+        }
+
+        nav {
+            .nav {
+
+                img {
+                    width: 27%;
+                }
+
+                .counter {
+                    width: 25px;
+                    height: 35px;
+                    margin-left: 71% !important;
+                    margin-top: -25px;
+                }
+            }
         }
 
         .all {
             display: grid;
             grid-template-columns: 1fr;
         }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    section {
+
+        nav {
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .nav {
+
+                img {
+                    width: 29%;
+                }
+
+                .counter {
+                    width: 20px;
+                    height: 25px;
+                    margin-left: 65% !important;
+                    margin-top: -20px;
+                    padding-top: 1px !important;
+                }
+            }
+        }
+
     }
 }

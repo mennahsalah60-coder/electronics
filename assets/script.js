@@ -8,7 +8,8 @@ const products = [
         old_price: "1499$",
         price_after_sale: "1299$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -20,7 +21,8 @@ const products = [
         old_price: "1599$",
         price_after_sale: "1499$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -32,7 +34,8 @@ const products = [
         old_price: "1000$",
         price_after_sale: "900$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -43,8 +46,9 @@ const products = [
         image: "./assets/images/four.webp",
         old_price: "2000$",
         price_after_sale: "1500$",
-        cart: "./assets/images/cart.png",
-        fav: "./assets/images/Favorite (1).svg"
+        cart: "./assets/images/Group 1.svg",
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -56,7 +60,8 @@ const products = [
         old_price: "300$",
         price_after_sale: "250$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -68,7 +73,8 @@ const products = [
         old_price: "3000$",
         price_after_sale: "2000$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -80,7 +86,8 @@ const products = [
         old_price: "1500$",
         price_after_sale: "1000$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 
     {
@@ -92,9 +99,56 @@ const products = [
         old_price: "5000$",
         price_after_sale: "2500$",
         cart: "./assets/images/Group 1.svg",
-        fav: "./assets/images/Favorite (1).svg"
+        fav: "./assets/images/Favorite (1).svg",
+        wish: "./assets/images/colored-favourite.svg"
     },
 ]
+
+const counter = document.querySelector(".counter")
+const cartProducts = {};
+const AddToCart = (id) => {
+    cartProducts[id] = true
+    console.log(cartProducts)
+    displayProducts(products)
+    counter.textContent = Object.keys(cartProducts).length;
+}
+
+const RemoveFromCart = (id) => {
+    delete cartProducts[id]
+    displayProducts(products)
+    counter.textContent = Object.keys(cartProducts).length;
+    console.log(cartProducts)
+}
+
+
+const countofwish = document.querySelector(".wishs")
+const btnWishs = document.querySelector(".wishs")
+wishlist = {};
+const favourite = (id) => {
+    wishlist[id] = true
+    btnWishs.addEventListener("click", function () {
+        const filteredWishlist = products.filter(product => wishlist[product.id]);
+        if (filteredWishlist.length === 0) {
+            ProductsContainer.innerHTML = `
+            <p class="text-center fs-3 text-secondary">No Favorites Found</p>
+        `;
+            return;
+        }
+
+        displayProducts(filteredWishlist);
+    });
+    console.log(wishlist)
+    displayProducts(products)
+    countofwish.textContent = Object.keys(wishlist).length;
+}
+
+const RemoveFromWish = (id) => {
+    delete wishlist[id]
+    displayProducts(products)
+    console.log(wishlist)
+    countofwish.textContent = Object.keys(wishlist).length;
+}
+
 
 const ProductsContainer = document.querySelector(".products-container")
 function displayProducts(allDisplay) {
@@ -104,7 +158,8 @@ function displayProducts(allDisplay) {
         if (products.length === 0) {
         }
         ProductsContainer.innerHTML +=
-            `<div class="card">
+            `
+            <div class="card">
             <img class="card-img-top p-2 rounded-4 h-75" src="${product.image}">
             <div class="card-body">
                 <h2 class= "card-title">${product.h2}</h2>
@@ -113,11 +168,27 @@ function displayProducts(allDisplay) {
                 <p class="card-text fs-2 text-success">${product.price_after_sale}
                     <span  class="fs-4 text-decoration-line-through text-danger">${product.old_price}</span>
                 </p>
-                <div class="button">
-                    <a class="btn btn-primary pt-3">
-                    <img src="${product.cart}" alt="Cart Icon" class="">
-                    </a>
-                    <p><img class="heart" src="${product.fav}" alt="Cart Icon" class=""></p>
+                ${cartProducts[product.id] ? `
+                    <div class="button">
+                        <button class="btn btn-danger pt-3 pb-3" onclick="RemoveFromCart(${product.id})">
+                    Remove From Cart</button>
+                    `: `
+                    <div class="button">
+                        <button class="btn btn-primary pt-3 pb-3" onclick="AddToCart(${product.id})">
+                        <img src="${product.cart}" alt="Cart Icon" class="">
+                    </button> `
+            }
+
+                    ${wishlist[product.id] ?
+                `<button class="bg-light border border-primary ">
+                            <img class="heart-two w-75" onClick="RemoveFromWish(${product.id})" src="${product.wish}" alt="Cart Icon">
+                        </button>
+                        `: `         
+                        <button class=" bg-light border border-primary ">
+                            <img class="heart w-75" onClick="favourite(${product.id})" src="${product.fav}" alt="Cart Icon">
+                        </button>
+                        `}
+
                 </div>
             </div>
         </div>`
@@ -134,6 +205,11 @@ searchBtn.addEventListener("click", function () {
     ProductsContainer.innerHTML = "";
 
     const input = searchInput.value.toLowerCase().trim();
+    if (input === "" || input === " ") {
+        ProductsContainer.innerHTML =
+            `<p class=" fs-4 w-100 text-danger">Please enter a search value !</p>`;
+        return;
+    }
 
     const filteredNamePtoducts = products.filter((product) => {
         return product.h2.toLowerCase().includes(input);
@@ -144,7 +220,6 @@ searchBtn.addEventListener("click", function () {
             `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
         return;
     }
-
     displayProducts(filteredNamePtoducts);
 });
 
@@ -157,6 +232,20 @@ priceBtn.addEventListener("click", function () {
     ProductsContainer.innerHTML = "";
     const max = Number(maxPrice.value)
     const min = Number(minPrice.value)
+
+    if (min < 0 || max < 0) {
+        ProductsContainer.innerHTML = `
+        <p class="text-center fs-4 text-danger">
+            Please enter positive numbers only
+        </p>`;
+        return;
+    } else if (minPrice.value.trim() === "" || maxPrice.value.trim() === "") {
+        ProductsContainer.innerHTML = `
+        <p class="text-center fs-4 text-danger">
+            Please enter both minimum and maximum prices
+        </p>`;
+        return;
+    }
     const filteredPrice = products.filter((product) => {
         // replace ?
         const price = Number(product.price_after_sale.replace("$", ""))
@@ -164,11 +253,13 @@ priceBtn.addEventListener("click", function () {
     })
     if (filteredPrice.length === 0) {
         ProductsContainer.innerHTML =
-            `<p class="text-center fs-2 text-secondary">No Data Found</p>`;
+            `<p class="text-center fs-2 text-secondary"> No Data Found </p> `;
         return;
     }
     displayProducts(filteredPrice)
 })
+
+
 
 
 

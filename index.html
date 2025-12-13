@@ -18,10 +18,17 @@
 <body>
     <section class="container">
         <nav class="navbar bg-body-light">
-            <div class="">
-                <div>
-                    <h1 class="mt-4"><span>Our </span>Product</h1>
-                    <p class="line"></p>
+            <div>
+                <div class="nav">
+                    <div>
+                        <h1 class="mt-4">Our Product</h1>
+                        <p class="line"></p>
+                    </div>
+                    <div class="text-end cart">
+                        <img class="mt-4" src="./assets/images/counter.svg" class="" alt="">
+                        <p class="counter bg-primary text-light text-center pt-2">0</p>
+                    </div>
+                
                 </div>
                 <div class="inputs gap-2">
                     <input class="search-input form-control me-2" type="search" placeholder="Search"
@@ -34,13 +41,16 @@
                         <input class="min-price form-control" type="number" placeholder="min price">
                     </div>
                     <div>
-                        <button class="price-btn btn btn-outline-primary h-100 w-100"
-                            type="submit">Search</button>
+                        <button class="price-btn btn btn-outline-primary h-100 w-100" type="submit">Search</button>
                     </div>
+                </div>
+                <div>
+                    <button class="wishs btn btn-primary mt-3">My Favourites</button>
                 </div>
             </div>
         </nav>
         <div class="all gap-2 products-container"></div>
+
     </section>
 
 </body>
